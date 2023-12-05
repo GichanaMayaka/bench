@@ -2,6 +2,7 @@
 import os
 import pathlib
 import re
+import shutil
 import sys
 import subprocess
 from typing import List
@@ -255,7 +256,7 @@ def get_app_name(bench_path: str, folder_name: str) -> str:
 			app_name = re.search(r'name\s*=\s*[\'"](.*)[\'"]', f.read().decode("utf-8"))[1]
 
 	if app_name and folder_name != app_name:
-		os.rename(os.path.join(apps_path, folder_name), os.path.join(apps_path, app_name))
+		shutil.move(os.path.join(apps_path, folder_name), os.path.join(apps_path, app_name))
 		return app_name
 
 	return folder_name
